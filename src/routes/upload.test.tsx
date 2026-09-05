@@ -13,7 +13,7 @@ const STEPS = [
 ];
 
 describe("upload workflow", () => {
-  beforeEach(() => vi.useFakeTimers());
+  beforeEach(() => vi.useFakeTimers({ shouldAdvanceTime: true }));
   afterEach(() => vi.useRealTimers());
 
   it("starts empty with the drop zone and disclaimer", async () => {
