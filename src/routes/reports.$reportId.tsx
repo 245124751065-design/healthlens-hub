@@ -27,7 +27,7 @@ export const Route = createFileRoute("/reports/$reportId")({
       ],
     };
   },
-  component: ReportAnalysis;
+  component: ReportAnalysis,
 });
 
 function ReportAnalysis() {
