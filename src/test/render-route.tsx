@@ -22,6 +22,7 @@ export async function renderRoute(path: string) {
     defaultPreloadStaleTime: 0,
   });
 
+  await router.load();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = render(<RouterProvider router={router as any} />);
   await waitFor(() => expect(router.state.status).toBe("idle"));
