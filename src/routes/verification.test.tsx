@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { extractions } from "@/data/demo";
 import { Route } from "./verification";
 
-const VerificationPage = Route.options.component as () => JSX.Element;
+const VerificationPage = Route.options.component as React.ComponentType;
 
 describe("Verification Center", () => {
   it("lists every extracted item as pending review", () => {
