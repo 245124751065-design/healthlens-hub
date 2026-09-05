@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as ComparisonRouteImport } from './routes/comparison'
 import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as VerificationRouteImport } from './routes/verification'
 import { Route as PatientsIndexRouteImport } from './routes/patients.index'
 import { Route as PatientsPatientIdRouteImport } from './routes/patients.$patientId'
 import { Route as ReportsIndexRouteImport } from './routes/reports.index'
@@ -36,6 +37,11 @@ const ComparisonRoute = ComparisonRouteImport.update({
 const TimelineRoute = TimelineRouteImport.update({
   id: '/timeline',
   path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerificationRoute = VerificationRouteImport.update({
+  id: '/verification',
+  path: '/verification',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PatientsIndexRoute = PatientsIndexRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
   '/timeline': typeof TimelineRoute
+  '/verification': typeof VerificationRoute
   '/patients/$patientId': typeof PatientsPatientIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/patients/': typeof PatientsIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
   '/timeline': typeof TimelineRoute
+  '/verification': typeof VerificationRoute
   '/patients/$patientId': typeof PatientsPatientIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/patients': typeof PatientsIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
   '/timeline': typeof TimelineRoute
+  '/verification': typeof VerificationRoute
   '/patients/$patientId': typeof PatientsPatientIdRoute
   '/reports/$reportId': typeof ReportsReportIdRoute
   '/patients/': typeof PatientsIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/comparison'
     | '/timeline'
+    | '/verification'
     | '/patients/$patientId'
     | '/reports/$reportId'
     | '/patients/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/comparison'
     | '/timeline'
+    | '/verification'
     | '/patients/$patientId'
     | '/reports/$reportId'
     | '/patients'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/comparison'
     | '/timeline'
+    | '/verification'
     | '/patients/$patientId'
     | '/reports/$reportId'
     | '/patients/'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AlertsRoute: typeof AlertsRoute
   ComparisonRoute: typeof ComparisonRoute
   TimelineRoute: typeof TimelineRoute
+  VerificationRoute: typeof VerificationRoute
   PatientsPatientIdRoute: typeof PatientsPatientIdRoute
   ReportsReportIdRoute: typeof ReportsReportIdRoute
   PatientsIndexRoute: typeof PatientsIndexRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/timeline'
       fullPath: '/timeline'
       preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verification': {
+      id: '/verification'
+      path: '/verification'
+      fullPath: '/verification'
+      preLoaderRoute: typeof VerificationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/patients/': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlertsRoute: AlertsRoute,
   ComparisonRoute: ComparisonRoute,
   TimelineRoute: TimelineRoute,
+  VerificationRoute: VerificationRoute,
   PatientsPatientIdRoute: PatientsPatientIdRoute,
   ReportsReportIdRoute: ReportsReportIdRoute,
   PatientsIndexRoute: PatientsIndexRoute,
