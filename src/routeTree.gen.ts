@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as ComparisonRouteImport } from './routes/comparison'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as UploadRouteImport } from './routes/upload'
 import { Route as VerificationRouteImport } from './routes/verification'
@@ -33,6 +34,11 @@ const AlertsRoute = AlertsRouteImport.update({
 const ComparisonRoute = ComparisonRouteImport.update({
   id: '/comparison',
   path: '/comparison',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TimelineRoute = TimelineRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
+  '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/upload': typeof UploadRoute
   '/verification': typeof VerificationRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
+  '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/upload': typeof UploadRoute
   '/verification': typeof VerificationRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
   '/comparison': typeof ComparisonRoute
+  '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/upload': typeof UploadRoute
   '/verification': typeof VerificationRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/alerts'
     | '/comparison'
+    | '/settings'
     | '/timeline'
     | '/upload'
     | '/verification'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/alerts'
     | '/comparison'
+    | '/settings'
     | '/timeline'
     | '/upload'
     | '/verification'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/alerts'
     | '/comparison'
+    | '/settings'
     | '/timeline'
     | '/upload'
     | '/verification'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlertsRoute: typeof AlertsRoute
   ComparisonRoute: typeof ComparisonRoute
+  SettingsRoute: typeof SettingsRoute
   TimelineRoute: typeof TimelineRoute
   UploadRoute: typeof UploadRoute
   VerificationRoute: typeof VerificationRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/comparison'
       fullPath: '/comparison'
       preLoaderRoute: typeof ComparisonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/timeline': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlertsRoute: AlertsRoute,
   ComparisonRoute: ComparisonRoute,
+  SettingsRoute: SettingsRoute,
   TimelineRoute: TimelineRoute,
   UploadRoute: UploadRoute,
   VerificationRoute: VerificationRoute,

@@ -123,7 +123,7 @@ function ReportAnalysis() {
               </button>
             </div>
             <button
-              onClick={() => setSelected(extractions[0])}
+              onClick={() => setSelected(extractions[0] ?? null)}
               className="inline-flex items-center gap-2 rounded-lg border border-primary/25 bg-info-soft px-3 py-2 text-xs font-semibold text-primary"
             >
               <Eye className="h-3.5 w-3.5" /> View Source
